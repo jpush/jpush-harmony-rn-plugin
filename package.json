@@ -1,0 +1,38 @@
+{
+  "name": "jpush-harmony-rn-plugin",
+  "description": "React Native JPush component for Android and iOS",
+  "homepage": "https://github.com/jpush/jpush-harmony-rn-plugin",
+  "main": "index.ts",
+  "license": "ISC",
+  "author": "terry",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jpush/jpush-harmony-rn-plugin"
+  },
+  "keywords": [
+    "react-native",
+    "JPush",
+    "harmony"
+  ],
+  "peerDependencies": {
+    "react-native": ">= 0.72.5"
+  },
+  "files": [
+    "src/",
+    "/harmony"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "harmony": {
+    "alias": "jpush-harmony-rn-plugin",
+    "codegenConfig": {
+      "specPaths": [
+        "./src"
+      ]
+    }
+  },
+  "private": false
+}
