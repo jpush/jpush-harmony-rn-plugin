@@ -1,7 +1,7 @@
 # jpush-harmony-rn-plugin
 
-# 安装方式
-## 手动安装
+## 安装方式
+### 手动安装
 
 ```
 git clone https://github.com/jpush/jpush-harmony-rn-plugin  ----下载源码
@@ -25,7 +25,7 @@ import { JPushModule } from 'jpush-harmony-rn-plugin';
 
 ```
 
-# 方法
+## 方法
 
 |Key | Support | Description |
 | --- | ---- | ----------- |
