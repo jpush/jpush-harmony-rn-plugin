@@ -28,7 +28,7 @@ export class JPushTurboModule extends TurboModule {
 
   async init() {
     Logger.info(`init `);
-    JPushInterface.init(this._context.getApplicationContext())
+    JPushInterface.init(this._context)
     JPushInterface.setCallBackMsg(new MyCallBackMsg(this._RnContext))
   }
 
@@ -135,7 +135,7 @@ export class JPushTurboModule extends TurboModule {
 
   static receiveExtraDataMessage(rNEAbility: RemoteNotificationExtensionAbility,
     remoteNotificationInfo: pushCommon.RemoteNotificationInfo): Promise<JMessageExtra | undefined> {
-    return JPushInterface.receiveExtraDataMessage(remoteNotificationInfo)
+    return JPushInterface.receiveExtraDataMessage(rNEAbility,remoteNotificationInfo)
   }
 }
 
