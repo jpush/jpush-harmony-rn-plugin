@@ -23,11 +23,13 @@
     "src/",
     "harmony/jpush_harmony/",
     "tsconfig.json",
-    "documents/"
+    "documents/",
+    "scripts/"
   ],
   "scripts": {
     "test": "node --test tests/*.test.cjs",
-    "build": "tsc --noEmit"
+    "build": "tsc --noEmit",
+    "check:harmony-host": "node scripts/check-harmony-host.cjs"
   },
   "harmony": {
     "alias": "jpush-harmony-rn-plugin",
@@ -40,5 +42,11 @@
   "private": false,
   "devDependencies": {
     "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "json5": "^2.2.3"
+  },
+  "bin": {
+    "jpush-harmony-check-host": "scripts/check-harmony-host.cjs"
   }
 }

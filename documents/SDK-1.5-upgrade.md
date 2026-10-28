@@ -53,3 +53,23 @@ subscription.remove(); // 页面卸载只移除自己的监听；不要销毁仍
 9项mock契约测试、最终npm tgz安装后的公共TypeScript构建、对官方@jg/push1.5.0真实导出声明的TypeScript兼容检查通过，HAR SHA512校验通过。所取官方RNOH0.72.145源码用于核对callAsync和__onDestroy__，不等于项目原声明本地react_native_openharmony-5.0.0.302.har已编译验证；未改变原依赖或最低支持声明。原本地HAR没有随仓提供，匹配宿主工具链集成仍需验证。
 
 当前机器无DevEco、Harmony SDK/hdc/hvigor/ohpm可执行工具，HBuilderX仅含编辑器schema，不是SDK编译链；无法运行ArkTS/HAR/HAP构建。npm TypeScript构建通过不能替代上述原生编译。用户已明确没有鸿蒙测试机，本轮免真机。本PR保留上述原生构建待验，不宣称编译或运行通过。
+
+## 必需：宿主RNOH依赖覆盖与安装前检查
+
+本包不会携带或擅自升级宿主RNOH框架。模块oh-package中的legacy `file:../libs/react_native_openharmony-5.0.0.302.har`不是随包文件，**无宿主根overrides时不可解析，不能直接ohpm install后声称可安装**。保持该fallback仅为兼容已有宿主的依赖覆盖机制，不能把旧plugin HAR当框架HAR。
+
+按RNOH官方生态库[根overrides集成方式](https://github.com/react-native-oh-library/react-native-harmony-screens/blob/sig/doc/en.md)，在你的Harmony工程根oh-package.json5明确覆盖所有transitive RNOH依赖：
+
+```json5
+{
+  overrides: {
+    // 路径相对于本文件。使用当前宿主已安装、与JS框架相匹配的HAR，不自动升级框架。
+    // 已核验官方@react-native-oh/react-native-harmony@0.72.145 npm包实际HAR位于包根。
+    '@rnoh/react-native-openharmony': 'file:../node_modules/@react-native-oh/react-native-harmony/react_native_openharmony.har',
+  },
+}
+```
+
+旧/别名框架包布局可能不同，须改为你现有HAR真实路径，不能照抄不存在的示例。框架来源为当前宿主匹配的官方npm包/HAR，而不是本插件分发。将本插件源码模块加入entry依赖后，**先运行**安装到本地node_modules的`jpush-harmony-check-host /你的工程/harmony/oh-package.json5`，再执行ohpm install和宿主构建。也可`node node_modules/jpush-harmony-rn-plugin/scripts/check-harmony-host.cjs <根配置>`。脚本仅读取指定配置与其显式HAR，不修改文件、不登录、不安装框架。
+
+检查缺overrides、路径不存在/不是HAR、包name/version不匹配或不能确认__onDestroy__/callAsync声明时非0退出，不以TS成功替代依赖配置。正例使用实际官方0.72.145 HAR，反例覆盖缺override/缺文件/错误HAR。脚本通过只证明所检依赖路径/元数据/声明，不证明OHPM实际解析、ArkTS/HAR/HAP编译或所有RNOH版本兼容；旧本地5.0.0.302版本仍未编译验证。

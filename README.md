@@ -402,3 +402,5 @@ export default class App extends React.Component {
 ## 1.4.0 升级
 
 详见[接口与兼容迁移](documents/SDK-1.5-upgrade.md)。本版npm包只分发更新源码，历史根目录1.3.0 tgz和harmony/jpush_harmony.har保留作为旧版历史，不作为本版安装产物。宿主使用源码模块构建，不复制旧HAR。
+
+Harmony依赖安装必须先按迁移文档配置宿主根overrides并运行`jpush-harmony-check-host`；legacy框架HAR不随本包分发，无override不可解析。
