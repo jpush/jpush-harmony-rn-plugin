@@ -1,4 +1,8 @@
-demo
-doc
-example
-.gitignore
+tests/
+node_modules/
+*.tgz
+**/*.har
+**/build/
+**/oh_modules/
+**/.hvigor/
+**/oh-package-lock.json5

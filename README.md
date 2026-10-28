@@ -6,13 +6,13 @@
 ```
 git clone https://github.com/jpush/jpush-harmony-rn-plugin  ----下载源码
 
-复制：jpush-harmony-rn-plugin-1.0.0.tgz  到RN项目中
+复制：jpush-harmony-rn-plugin-1.4.0.tgz  到RN项目中
 
 在RN项目中进行引用：
 如：
  "dependencies": {
     ...
-     "jpush-harmony-rn-plugin": "file:./jpush-harmony-rn-plugin-1.0.0.tgz",
+     "jpush-harmony-rn-plugin": "file:./jpush-harmony-rn-plugin-1.4.0.tgz",
     ...
   }
 
@@ -140,7 +140,7 @@ export default class App extends React.Component {
   commandResultListener: EmitterSubscription | null = null;
   constructor(props: AppProps) {
     super(props); // 传递空的 props
-    JPushModule.setAppKey("b266cd5c8544ba09b23733e3");
+    JPushModule.setAppKey("YOUR_APP_KEY");
     JPushModule.init();
     JPushModule.setDebug(true);
     this.addListeners();
@@ -398,3 +398,7 @@ export default class App extends React.Component {
 ```
 ## 鸿蒙侧集成请查看 [JPush HarmonyOS 集成](https://docs.jiguang.cn/jpush/client/HarmonyOS/hmos_guide)。
 
+
+## 1.4.0 升级
+
+详见[接口与兼容迁移](documents/SDK-1.5-upgrade.md)。本版npm包只分发更新源码，历史根目录1.3.0 tgz和harmony/jpush_harmony.har保留作为旧版历史，不作为本版安装产物。宿主使用源码模块构建，不复制旧HAR。
