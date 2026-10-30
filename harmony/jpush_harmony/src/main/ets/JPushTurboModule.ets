@@ -1,4 +1,4 @@
-import { RNOHContext, TurboModule } from '@rnoh/react-native-openharmony/ts';
+import { RNOHContext, TurboModule, TurboModuleContext } from '@rnoh/react-native-openharmony/ts';
 import { common, Want } from '@kit.AbilityKit';
 import { pushCommon, RemoteNotificationExtensionAbility } from '@kit.PushKit';
 import Logger from './Logger';
@@ -38,7 +38,7 @@ export class JPushTurboModule extends TurboModule {
   private generation: number = 0;
   private callback: MyCallBackMsg | undefined = undefined;
 
-  constructor(ctx: RNOHContext) {
+  constructor(ctx: TurboModuleContext) {
     super(ctx);
     this._context = ctx?.uiAbilityContext;
     this._RnContext = ctx;
